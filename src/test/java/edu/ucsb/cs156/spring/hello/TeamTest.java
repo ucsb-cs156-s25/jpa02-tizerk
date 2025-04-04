@@ -25,8 +25,12 @@ public class TeamTest {
     }
 
     @Test
-    void equals_same_object_instance() {
+    void equals_same_object() {
         assert(team.equals(team));
+    }
+
+    @Test
+    void equals_same_object_instance() {
         Team team2 = team;
         assert(team.equals(team2));
     }
@@ -38,8 +42,16 @@ public class TeamTest {
     }
 
     @Test
-    void equals_different_data() {
+    void equals_different_name() {
+        team.addMember("test-member");
         Team team2 = new Team("Banana");
+        assert(!team.equals(team2));
+    }
+    @Test
+    void equals_different_members() {
+        team.addMember("test-member");
+        Team team2 = new Team("test-team");
+        team2.addMember("different-member");
         assert(!team.equals(team2));
     }
 
